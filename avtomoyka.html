@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автомойка. Шиномонтаж</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            font-size: 16px; /* Увеличиваем базовый размер шрифта */
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #8B0000;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 16px; /* Увеличиваем размер кнопок */
+        }
+        
+        .btn:hover {
+            background: #A52A2A;
+            transform: translateY(-2px);
+        }
+        
+        section {
+            padding: 60px 0; /* Уменьшаем отступы для мобильных */
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 30px; /* Уменьшаем отступ */
+            position: relative;
+            font-size: 28px; /* Увеличиваем размер заголовков */
+        }
+        
+        h2:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #8B0000;
+            margin: 15px auto;
+        }
+        
+        /* Шапка */
+        header {
+            background: #444;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 20px; /* Уменьшаем логотип для мобильных */
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px; /* Уменьшаем отступы между пунктами меню */
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px; /* Увеличиваем размер шрифта меню */
+        }
+        
+        nav ul li a:hover {
+            color: #8B0000;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+        }
+        
+        /* Герой секция */
+        .hero {
+            background: linear-gradient(rgba(68, 68, 68, 0.8), rgba(68, 68, 68, 0.8)), url('https://images.unsplash.com/photo-1565689228866-1d7db786113c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 140px 0 80px; /* Уменьшаем отступы */
+            margin-top: 70px;
+        }
+        
+        .hero h1 {
+            font-size: 32px; /* Уменьшаем размер заголовка для мобильных */
+            margin-bottom: 20px;
+            color: #fff;
+            line-height: 1.3;
+        }
+        
+        .hero p {
+            font-size: 18px; /* Увеличиваем размер текста */
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.5;
+        }
+        
+        /* Услуги */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Уменьшаем минимальную ширину */
+            gap: 20px; /* Уменьшаем промежутки */
+        }
+        
+        .service-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-top: 4px solid #8B0000;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px); /* Уменьшаем эффект для мобильных */
+        }
+        
+        .service-icon {
+            background: #444;
+            color: #fff;
+            font-size: 40px;
+            padding: 30px;
+            text-align: center;
+            height: 180px; /* Уменьшаем высоту для мобильных */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+        
+        .service-icon i {
+            position: relative;
+            z-index: 2;
+            background: rgba(139, 0, 0, 0.8);
+            width: 70px; /* Уменьшаем размер иконки */
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .service-content {
+            padding: 20px; /* Уменьшаем отступы */
+        }
+        
+        .service-content h3 {
+            margin-bottom: 15px;
+            color: #444;
+            font-size: 20px; /* Увеличиваем размер заголовков */
+        }
+        
+        .service-content p {
+            font-size: 16px; /* Увеличиваем размер текста */
+            line-height: 1.5;
+        }
+        
+        /* Прайс-листы */
+        .price-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            overflow-x: auto; /* Добавляем горизонтальную прокрутку для табов */
+            padding-bottom: 10px;
+        }
+        
+        .price-tab {
+            padding: 10px 15px; /* Уменьшаем отступы */
+            background: #e9ecef;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 5px;
+            color: #444;
+            font-size: 14px; /* Уменьшаем размер шрифта табов */
+            white-space: nowrap; /* Запрещаем перенос текста */
+        }
+        
+        .price-tab.active {
+            background: #8B0000;
+            color: #fff;
+        }
+        
+        .price-content {
+            display: none;
+        }
+        
+        .price-content.active {
+            display: block;
+        }
+        
+        /* Стили для таблиц на мобильных */
+        .table-container {
+            overflow-x: auto; /* Горизонтальная прокрутка для таблиц */
+            margin-bottom: 20px;
+            -webkit-overflow-scrolling: touch; /* Плавная прокрутка на iOS */
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            min-width: 600px; /* Минимальная ширина для таблиц */
+        }
+        
+        th, td {
+            padding: 12px 10px; /* Уменьшаем отступы в ячейках */
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 14px; /* Уменьшаем размер шрифта в таблицах */
+        }
+        
+        th {
+            background-color: #8B0000;
+            color: white;
+            font-weight: 600;
+            white-space: nowrap; /* Запрещаем перенос заголовков */
+        }
+        
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .note {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            border-left: 4px solid #ffc107;
+            font-size: 14px; /* Уменьшаем размер шрифта в примечаниях */
+        }
+        
+        /* О нас с галереей */
+        .about {
+            background: #fff;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-direction: column; /* Меняем на колонку для мобильных */
+            align-items: center;
+            gap: 30px; /* Уменьшаем промежуток */
+            margin-bottom: 40px;
+        }
+        
+        .about-text {
+            width: 100%; /* Занимает всю ширину */
+        }
+        
+        .about-text p {
+            font-size: 16px; /* Увеличиваем размер текста */
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .about-image {
+            width: 100%; /* Занимает всю ширину */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: #444;
+            height: 250px; /* Уменьшаем высоту для мобильных */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .about-main-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Галерея */
+        .gallery-section {
+            margin-top: 40px; /* Уменьшаем отступ */
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Уменьшаем минимальную ширину */
+            gap: 15px; /* Уменьшаем промежутки */
+            margin-top: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 150px; /* Уменьшаем высоту для мобильных */
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-3px); /* Уменьшаем эффект для мобильных */
+        }
+        
+        .gallery-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Модальное окно для фото */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 95%;
+            max-height: 80%;
+            margin-top: 5%;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 2001;
+        }
+
+        .close-modal:hover {
+            color: #8B0000;
+            transform: scale(1.1);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            transform: translateY(-50%);
+            z-index: 2001;
+        }
+
+        .modal-prev, .modal-next {
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            background: rgba(139, 0, 0, 0.7);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .modal-prev:hover, .modal-next:hover {
+            background: #8B0000;
+            transform: scale(1.1);
+        }
+
+        .modal-caption {
+            text-align: center;
+            color: #fff;
+            padding: 10px 20px;
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+            font-size: 14px;
+        }
+
+        /* Контакты */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Одна колонка для мобильных */
+            gap: 20px; /* Уменьшаем промежутки */
+        }
+        
+        .contact-info {
+            background: #fff;
+            padding: 20px; /* Уменьшаем отступы */
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start; /* Выравнивание по верхнему краю */
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            background: #8B0000;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0; /* Запрещаем сжатие иконки */
+        }
+        
+        .contact-item h4 {
+            margin-bottom: 5px;
+            font-size: 16px; /* Увеличиваем размер заголовков */
+        }
+        
+        .contact-item p {
+            font-size: 16px; /* Увеличиваем размер текста */
+            line-height: 1.5;
+        }
+        
+        /* Карта */
+        .map-container {
+            height: 250px; /* Уменьшаем высоту карты */
+            background: #e9ecef;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-placeholder {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .map-placeholder i {
+            font-size: 48px;
+            color: #8B0000;
+            margin-bottom: 15px;
+        }
+        
+        .map-placeholder p {
+            margin-bottom: 10px;
+        }
+        
+        .map-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        /* Футер */
+        footer {
+            background: #444;
+            color: #fff;
+            padding: 40px 0 20px; /* Уменьшаем отступы */
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr; /* Одна колонка для мобильных */
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            font-size: 20px; /* Увеличиваем размер заголовков */
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: #8B0000;
+            margin-top: 10px;
+        }
+        
+        .footer-column p {
+            font-size: 16px; /* Увеличиваем размер текста */
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 16px; /* Увеличиваем размер текста */
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 16px; /* Увеличиваем размер текста */
+        }
+        
+        .footer-links a:hover {
+            color: #fff;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            color: #bbb;
+            font-size: 24px; /* Увеличиваем размер иконок */
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #8B0000;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            color: #bbb;
+            font-size: 14px;
+        }
+        
+        /* Адаптивность */
+        @media (min-width: 768px) {
+            /* Стили для планшетов и выше */
+            .logo {
+                font-size: 24px;
+            }
+            
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .hero {
+                padding: 180px 0 100px;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            h2 {
+                font-size: 36px;
+                margin-bottom: 50px;
+            }
+            
+            .about-content {
+                flex-direction: row;
+                gap: 50px;
+            }
+            
+            .about-text {
+                flex: 1;
+            }
+            
+            .about-image {
+                flex: 1;
+                height: 400px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .gallery-item {
+                height: 200px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .price-tab {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            
+            th, td {
+                padding: 15px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            /* Стили для мобильных */
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #444;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+                z-index: 1001;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr; /* Одна колонка на мобильных */
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr); /* Две колонки на мобильных */
+            }
+            
+            .modal-content {
+                max-width: 95%;
+                max-height: 70%;
+            }
+
+            .modal-nav {
+                padding: 0 10px;
+            }
+
+            .modal-prev, .modal-next {
+                width: 35px;
+                height: 35px;
+                font-size: 20px;
+            }
+            
+            .close-modal {
+                top: 10px;
+                right: 15px;
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Стили для очень маленьких экранов */
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .logo {
+                font-size: 18px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr; /* Одна колонка на очень маленьких экранах */
+            }
+            
+            .gallery-item {
+                height: 200px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+        
+        /* Улучшенная прокрутка для iOS */
+        .price-tabs::-webkit-scrollbar,
+        .table-container::-webkit-scrollbar {
+            height: 5px;
+        }
+        
+        .price-tabs::-webkit-scrollbar-track,
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .price-tabs::-webkit-scrollbar-thumb,
+        .table-container::-webkit-scrollbar-thumb {
+            background: #8B0000;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Автомойка. Шиномонтаж</a>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#prices">Цены</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой секция -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Профессиональная автомойка и шиномонтаж в Благовещенке</h1>
+            <p>Качественный уход за вашим автомобилем по доступным ценам. Мы заботимся о вашей безопасности и комфорте на дороге.</p>
+            <a href="#contact" class="btn">Связаться с нами</a>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services">
+        <div class="container">
+            <h2>Наши услуги</h2>
+            <div class="services-grid">
+                <!-- Шиномонтаж -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <!-- ЗАМЕНИТЕ НА ВАШЕ ФОТО -->
+                        <img src="photo10.jpg" alt="Шиномонтаж" class="service-photo">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Шиномонтаж</h3>
+                        <p>Профессиональный шиномонтаж для всех типов автомобилей. Замена, балансировка и ремонт шин.</p>
+                    </div>
+                </div>
+                
+                <!-- Автомойка -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <!-- ЗАМЕНИТЕ НА ВАШЕ ФОТО -->
+                        <img src="photo11.jpg" alt="Автомойка" class="service-photo">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Автомойка</h3>
+                        <p>Полный спектр услуг по мойке автомобилей: от экспресс-мойки до детейлинга и химчистки салона.</p>
+                    </div>
+                </div>
+                
+                <!-- Дополнительные услуги -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <!-- ЗАМЕНИТЕ НА ВАШЕ ФОТО -->
+                        <img src="photo9.jpg" alt="Дополнительные услуги" class="service-photo">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Дополнительные услуги</h3>
+                        <p>Утилизация шин, обработка дисков, чистка привалочных поверхностей и другие сопутствующие услуги.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Цены -->
+    <section id="prices">
+        <div class="container">
+            <h2>Наши цены</h2>
+            
+            <div class="price-tabs">
+                <button class="price-tab active" data-tab="tire-services">Пакеты для шин</button>
+                <button class="price-tab" data-tab="additional-services">Дополнительные услуги</button>
+                <button class="price-tab" data-tab="tire-mounting">Шиномонтаж</button>
+                <button class="price-tab" data-tab="complex-services">Комплексные услуги</button>
+                <button class="price-tab" data-tab="car-wash">Автомойка</button>
+            </div>
+            
+            <div class="price-content active" id="tire-services">
+                <h3>Пакеты для шин</h3>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Услуга</th>
+                            <th>Цена</th>
+                        </tr>
+                        <tr>
+                            <td>Пакеты для шин (комплект 4 шт.)</td>
+                            <td>300 руб.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="price-content" id="additional-services">
+                <h3>Дополнительные услуги</h3>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Услуга</th>
+                            <th>Легковое</th>
+                            <th>SUV/Газель/Минивэн/Микроав.</th>
+                        </tr>
+                        <tr>
+                            <td>Утилизация шин (за 1 шину)</td>
+                            <td>150 руб.</td>
+                            <td>200 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Обработка диска герметиком (1шт)</td>
+                            <td>150 руб.</td>
+                            <td>150 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Снятие старого ремонтного материала</td>
+                            <td>300 руб.</td>
+                            <td>300 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Чистка привалочной поверхности борта диска</td>
+                            <td>200 руб.</td>
+                            <td>200 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Упаковка в пакеты (1шт)</td>
+                            <td>75 руб.</td>
+                            <td>75 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Съём датчика давления (1шт)</td>
+                            <td>200 руб.</td>
+                            <td>200 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Установка датчика давления (1шт)</td>
+                            <td>200 руб.</td>
+                            <td>200 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Проверка камеры/шины на герметичность</td>
+                            <td>200 руб.</td>
+                            <td>200 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Оптимизация балансировки (1 колесо)</td>
+                            <td>500 руб.</td>
+                            <td>500 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Проверка давления и подкачка (1 колесо)</td>
+                            <td>50 руб.</td>
+                            <td>50 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Аренда домкрата (не более 60мин)</td>
+                            <td>1000 руб.</td>
+                            <td>1000 руб.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="price-content" id="tire-mounting">
+                <h3>Прейскурант цен на услуги шиномонтажа</h3>
+                
+                <h4>Легковые автомобили</h4>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Размер / Услуга</th>
+                            <th>R13-R14</th>
+                            <th>R15</th>
+                            <th>R16</th>
+                            <th>R17</th>
+                            <th>R18</th>
+                            <th>R19</th>
+                            <th>R20</th>
+                            <th>R21</th>
+                            <th>R22</th>
+                        </tr>
+                        <tr>
+                            <td>Монтаж</td>
+                            <td>150</td>
+                            <td>150</td>
+                            <td>175</td>
+                            <td>200</td>
+                            <td>250</td>
+                            <td>275</td>
+                            <td>300</td>
+                            <td>300</td>
+                            <td>325</td>
+                        </tr>
+                        <tr>
+                            <td>Демонтаж</td>
+                            <td>150</td>
+                            <td>150</td>
+                            <td>175</td>
+                            <td>200</td>
+                            <td>250</td>
+                            <td>275</td>
+                            <td>300</td>
+                            <td>300</td>
+                            <td>325</td>
+                        </tr>
+                        <tr>
+                            <td>Балансировка</td>
+                            <td>225</td>
+                            <td>250</td>
+                            <td>275</td>
+                            <td>300</td>
+                            <td>350</td>
+                            <td>375</td>
+                            <td>400</td>
+                            <td>450</td>
+                            <td>475</td>
+                        </tr>
+                        <tr>
+                            <td>Съём-установка</td>
+                            <td>225</td>
+                            <td>250</td>
+                            <td>275</td>
+                            <td>300</td>
+                            <td>350</td>
+                            <td>375</td>
+                            <td>400</td>
+                            <td>450</td>
+                            <td>475</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h4>Доплаты</h4>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Размер / Услуга</th>
+                            <th>R15-R16</th>
+                            <th>R17</th>
+                            <th>R18</th>
+                            <th>R19</th>
+                            <th>R20</th>
+                            <th>R21</th>
+                            <th>R22</th>
+                            <th>Пер. ось</th>
+                            <th>Зад (спарка)</th>
+                        </tr>
+                        <tr>
+                            <td>Монтаж</td>
+                            <td>200</td>
+                            <td>225</td>
+                            <td>275</td>
+                            <td>300</td>
+                            <td>325</td>
+                            <td>350</td>
+                            <td>375</td>
+                            <td>200</td>
+                            <td>210</td>
+                        </tr>
+                        <tr>
+                            <td>Демонтаж</td>
+                            <td>200</td>
+                            <td>225</td>
+                            <td>275</td>
+                            <td>300</td>
+                            <td>325</td>
+                            <td>350</td>
+                            <td>375</td>
+                            <td>200</td>
+                            <td>210</td>
+                        </tr>
+                        <tr>
+                            <td>Балансировка</td>
+                            <td>325</td>
+                            <td>350</td>
+                            <td>375</td>
+                            <td>425</td>
+                            <td>475</td>
+                            <td>525</td>
+                            <td>575</td>
+                            <td>330</td>
+                            <td>360</td>
+                        </tr>
+                        <tr>
+                            <td>Съём-установка</td>
+                            <td>325</td>
+                            <td>350</td>
+                            <td>375</td>
+                            <td>425</td>
+                            <td>475</td>
+                            <td>525</td>
+                            <td>575</td>
+                            <td>300</td>
+                            <td>350</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="note">
+                    <p><strong>Уважаемые клиенты!</strong></p>
+                    <p>Шиномонтаж (демонтаж+монтаж) шин с низким профилем (ниже 50%), оплачивается дополнительно: R15-R17 +175 руб. за 1 колесо.</p>
+                    <p>Монтаж+демонтаж шин RUN FLAT оплачивается дополнительно +275 руб. за 1 колесо.</p>
+                    <p>Доплата за шиномонтаж OFF Road (грязевые шины) +250 руб. за 1 колесо.</p>
+                    <p>Усиленные шины с маркировкой «С» +150 руб. за 1 колесо.</p>
+                </div>
+                
+                <h4>Ремонт шин</h4>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Услуга</th>
+                            <th>Цена</th>
+                        </tr>
+                        <tr>
+                            <td>Ремонт прокола шины (универсальная заплатка)</td>
+                            <td>450 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Ремонт прокола шины (установка грибка)</td>
+                            <td>600 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Ремонт прокола шины (установка жгута)</td>
+                            <td>500 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Ремонт шины/обширный прокол (кордовая заплатка R10)</td>
+                            <td>800 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Ремонт шины/обширный прокол (кордовая заплатка R15)</td>
+                            <td>1000 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Ремонт шины/обширный прокол (кордовая заплатка R18)</td>
+                            <td>1100 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Ремонт шины/обширный прокол (кордовая заплатка R20)</td>
+                            <td>1200 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Ремонт шины/обширный прокол (кордовая заплатка R22)</td>
+                            <td>1300 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Ремонт шины/обширный прокол (кордовая заплатка R25)</td>
+                            <td>1400 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Ремонт шины/обширный прокол (кордовая заплатка R30)</td>
+                            <td>1500 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Ремонт шины/обширный прокол (кордовая заплатка R33)</td>
+                            <td>1600 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Вентили чёрные (за 1 штуку)</td>
+                            <td>150 руб.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="price-content" id="complex-services">
+                <h3>Комплексные услуги</h3>
+                
+                <h4>Заправка кондиционера</h4>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Услуга</th>
+                            <th>Цена</th>
+                        </tr>
+                        <tr>
+                            <td>Заправка автомобильного кондиционера (100гр.)</td>
+                            <td>600 руб. + 500 руб. за услугу</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h4>Кроссовер, паркетник, внедорожник, SUV, микроавтобус, минивэн</h4>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Услуга / Размер</th>
+                            <th>R15</th>
+                            <th>R16</th>
+                            <th>R17</th>
+                            <th>R18</th>
+                            <th>R19</th>
+                            <th>R20</th>
+                            <th>R21</th>
+                            <th>R22</th>
+                        </tr>
+                        <tr>
+                            <td>Комплексная замена шин (4 шт) перебортировкой</td>
+                            <td>3750</td>
+                            <td>3750</td>
+                            <td>4100</td>
+                            <td>4750</td>
+                            <td>5250</td>
+                            <td>5800</td>
+                            <td>6300</td>
+                            <td>6800</td>
+                        </tr>
+                        <tr>
+                            <td>Замена колес в сборе 4 шт.</td>
+                            <td>2650</td>
+                            <td>2650</td>
+                            <td>2850</td>
+                            <td>3050</td>
+                            <td>3300</td>
+                            <td>3500</td>
+                            <td>3700</td>
+                            <td>4000</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h4>Легковое авто</h4>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Услуга / Размер</th>
+                            <th>R13-R14</th>
+                            <th>R15</th>
+                            <th>R16</th>
+                            <th>R17</th>
+                            <th>R18</th>
+                            <th>R19</th>
+                            <th>R20</th>
+                            <th>R21</th>
+                            <th>R22</th>
+                        </tr>
+                        <tr>
+                            <td>Комплексная замена шин (4 шт) перебортировкой</td>
+                            <td>2650</td>
+                            <td>2900</td>
+                            <td>3250</td>
+                            <td>3600</td>
+                            <td>4200</td>
+                            <td>4650</td>
+                            <td>4950</td>
+                            <td>5250</td>
+                            <td>5800</td>
+                        </tr>
+                        <tr>
+                            <td>Замена колес в сборе 4 шт.</td>
+                            <td>1850</td>
+                            <td>2100</td>
+                            <td>2200</td>
+                            <td>2450</td>
+                            <td>2650</td>
+                            <td>2850</td>
+                            <td>3100</td>
+                            <td>3300</td>
+                            <td>3600</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="price-content" id="car-wash">
+                <h3>Автомойка</h3>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Наименование услуги</th>
+                            <th>Легковая</th>
+                            <th>Кроссовер/джип</th>
+                            <th>Минивэн/микроавтобус</th>
+                            <th>Маршрутка/фургон</th>
+                        </tr>
+                        <tr>
+                            <td>1. Экспресс (Водой)</td>
+                            <td>300</td>
+                            <td>400</td>
+                            <td>500</td>
+                            <td>500</td>
+                        </tr>
+                        <tr>
+                            <td>2. Экспресс без сушки</td>
+                            <td>500</td>
+                            <td>600</td>
+                            <td>900</td>
+                            <td>1100</td>
+                        </tr>
+                        <tr>
+                            <td>3. Бесконтактная мойка</td>
+                            <td>700</td>
+                            <td>900</td>
+                            <td>1200</td>
+                            <td>1300</td>
+                        </tr>
+                        <tr>
+                            <td>4. Комплексная мойка (Кузов, пылесос салона, мойка пластика, мойка стекла)</td>
+                            <td>1000</td>
+                            <td>1300</td>
+                            <td>1600</td>
+                            <td>1800</td>
+                        </tr>
+                        <tr>
+                            <td>5. Пылесок багажника</td>
+                            <td>100</td>
+                            <td>100</td>
+                            <td>___</td>
+                            <td>___</td>
+                        </tr>
+                        <tr>
+                            <td>6. Пылесос салона</td>
+                            <td>200</td>
+                            <td>200</td>
+                            <td>300</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>7. Мойка пластика салона</td>
+                            <td>200</td>
+                            <td>300</td>
+                            <td>300</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>8. Мойка стекла</td>
+                            <td>200</td>
+                            <td>300</td>
+                            <td>300</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>9. Чистка кожи салона</td>
+                            <td>300</td>
+                            <td>500</td>
+                            <td>500</td>
+                            <td>____</td>
+                        </tr>
+                        <tr>
+                            <td>10. Чернение резины</td>
+                            <td>400</td>
+                            <td>100</td>
+                            <td>100</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>11. Чистка дисков</td>
+                            <td>От 300</td>
+                            <td>От 300</td>
+                            <td>От 300</td>
+                            <td>От 300</td>
+                        </tr>
+                        <tr>
+                            <td>12. Холодный воск</td>
+                            <td>400</td>
+                            <td>400</td>
+                            <td>400</td>
+                            <td>600</td>
+                        </tr>
+                        <tr>
+                            <td>13. Горячий воск</td>
+                            <td>400</td>
+                            <td>500</td>
+                            <td>500</td>
+                            <td>700</td>
+                        </tr>
+                        <tr>
+                            <td>14. Мойка ДВС</td>
+                            <td>От 1300</td>
+                            <td>От 1300</td>
+                            <td>От 1300</td>
+                            <td>От 1300</td>
+                        </tr>
+                        <tr>
+                            <td>15. Очистка от битума (деталь)</td>
+                            <td>От 300</td>
+                            <td>От 300</td>
+                            <td>От 300</td>
+                            <td>От 300</td>
+                        </tr>
+                        <tr>
+                            <td>16. Химчистка салона</td>
+                            <td>От 12000</td>
+                            <td>От 16000</td>
+                            <td>По усмотрению</td>
+                            <td>По усмотрению</td>
+                        </tr>
+                        <tr>
+                            <td>17. Предпродажная мойка</td>
+                            <td>По усмотрению</td>
+                            <td>По усмотрению</td>
+                            <td>По усмотрению</td>
+                            <td>По усмотрению</td>
+                        </tr>
+                        <tr>
+                            <td>18. Очистка от хим.реагентов</td>
+                            <td>От 800</td>
+                            <td>От 800</td>
+                            <td>От 800</td>
+                            <td>От 800</td>
+                        </tr>
+                        <tr>
+                            <td>19. Гидрофобное покрытие</td>
+                            <td>От 600</td>
+                            <td>От 600</td>
+                            <td>От 600</td>
+                            <td>От 600</td>
+                        </tr>
+                        <tr>
+                            <td>20. Детейлинг ДВС</td>
+                            <td>От 1000</td>
+                            <td>От 1000</td>
+                            <td>От 1000</td>
+                            <td>От 1000</td>
+                        </tr>
+                        <tr>
+                            <td>21. Обработка автомобиля твёрдым воском</td>
+                            <td>От 6000</td>
+                            <td>От 6000</td>
+                            <td>От 6000</td>
+                            <td>От 6000</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О нас с галереей -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>О нашей компании</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Мы - современный автосервис в Благовещенке, специализирующийся на профессиональной автомойке и шиномонтаже. Наша команда состоит из опытных специалистов, которые знают и любят свое дело.</p>
+                    <p>Мы используем только качественные материалы и современное оборудование, чтобы обеспечить наилучший результат для наших клиентов. Наша цель - сделать ваше пребывание у нас комфортным, а ваш автомобиль - чистым и безопасным.</p>
+                    <p>Мы ценим каждого клиента и гарантируем высокое качество всех предоставляемых услуг. Доверьте заботу о вашем автомобиле профессионалам!</p>
+                    <a href="#contact" class="btn">Связаться с нами</a>
+                </div>
+                <div class="about-image">
+                    <!-- ЗАМЕНИТЕ НА ВАШЕ ГЛАВНОЕ ФОТО -->
+                    <img src="photo1.jpg" alt="Наш автосервис" class="about-main-photo">
+                </div>
+            </div>
+            
+            <!-- Галерея фото -->
+            <div class="gallery-section">
+                <h3>Наша галерея</h3>
+                <div class="gallery-grid">
+                    <!-- Ячейки для 12 фото - замените на свои -->
+                    <div class="gallery-item">
+                        <img src="photo1.jpg" alt="Наша автомойка" class="gallery-photo">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="photo2.jpg" alt="Шиномонтаж" class="gallery-photo">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="photo3.jpg" alt="Профессиональное оборудование" class="gallery-photo">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="photo4.jpg" alt="Чистка салона" class="gallery-photo">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="photo5.jpg" alt="Мойка двигателя" class="gallery-photo">
+                    </div>    
+                    <div class="gallery-item">
+                        <img src="photo6.jpg" alt="Ремонт шин" class="gallery-photo">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="photo7.jpg" alt="Детейлинг" class="gallery-photo">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="photo8.jpg" alt="Наша команда" class="gallery-photo">
+                    </div>
+                    <div class="gallery-item">
+                       <img src="photo9.jpg" alt="Дополнительные услуги" class="gallery-photo">
+                    </div>
+                    <div class="gallery-item">
+                       <img src="photo10.jpg" alt="Шиномонтажные работы" class="gallery-photo">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="photo12.jpg" alt="Результаты работы" class="gallery-photo">
+                    </div>
+                    <div class="gallery-item">
+                         <img src="photo13.jpg" alt="Автосервис" class="gallery-photo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact">
+        <div class="container">
+            <h2>Контакты</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Наши контакты</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Адрес</h4>
+                            <p>Московская область, городской округ Химки, деревня Благовещенка</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Телефон (Евгения)</h4>
+                            <p>+7 (985) 335-00-17</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Телефон (Сергей)</h4>
+                            <p>+7 (977) 109-40-35</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4>Режим работы</h4>
+                            <p>Пн-Вс: 9:00 - 21:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <h3>Как нас найти</h3>
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p style="font-weight: 600; margin-bottom: 10px;">Московская область, г.о. Химки</p>
+                            <p style="color: #666;">д. Благовещенка</p>
+                            <a href="https://yandex.ru/maps/10716/himki/?ll=37.397030%2C55.907420&z=15" 
+                               target="_blank" 
+                               class="map-link">
+                                <i class="fas fa-external-link-alt"></i> Открыть в Яндекс.Картах
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Автомойка. Шиномонтаж</h3>
+                    <p>Профессиональная автомойка и шиномонтаж в Благовещенке. Мы заботимся о вашем автомобиле!</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Услуги</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Шиномонтаж</a></li>
+                        <li><a href="#">Автомойка</a></li>
+                        <li><a href="#">Ремонт шин</a></li>
+                        <li><a href="#">Химчистка</a></li>
+                        <li><a href="#">Заправка кондиционера</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> д. Благовещенка, г.о. Химки</li>
+                        <li><i class="fas fa-phone"></i> +7 (985) 335-00-17 (Евгения)</li>
+                        <li><i class="fas fa-phone"></i> +7 (977) 109-40-35 (Сергей)</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Социальные сети</h3>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/avtomoika.blago?igsh=MTh4OXUxajQwamh2eg==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://t.me/avtomoikablago" target="_blank"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Автомойка. Шиномонтаж. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для просмотра фото -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-nav">
+            <div class="modal-prev">&#10094;</div>
+            <div class="modal-next">&#10095;</div>
+        </div>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+
+    <script>
+        // Мобильное меню
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+        
+        // Табы для прайс-листов
+        const priceTabs = document.querySelectorAll('.price-tab');
+        const priceContents = document.querySelectorAll('.price-content');
+        
+        priceTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Убираем активный класс у всех табов и контента
+                priceTabs.forEach(t => t.classList.remove('active'));
+                priceContents.forEach(c => c.classList.remove('active'));
+                
+                // Добавляем активный класс к текущему табу
+                tab.classList.add('active');
+                
+                // Показываем соответствующий контент
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+                
+                // Закрываем мобильное меню после клика
+                document.querySelector('nav ul').classList.remove('active');
+            });
+        });
+
+        // Модальное окно для галереи
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("modalCaption");
+        const closeModal = document.querySelector(".close-modal");
+        const prevBtn = document.querySelector(".modal-prev");
+        const nextBtn = document.querySelector(".modal-next");
+
+        let currentImageIndex = 0;
+        let galleryImages = [];
+
+        // Собираем все фото галереи
+        function initGallery() {
+            // Фото из раздела услуг
+            const servicePhotos = Array.from(document.querySelectorAll('.service-photo'));
+            // Фото из галереи
+            const galleryPhotos = Array.from(document.querySelectorAll('.gallery-photo'));
+            // Главное фото из "О нас"
+            const aboutPhoto = document.querySelector('.about-main-photo');
+            
+            galleryImages = [...servicePhotos, ...galleryPhotos];
+            if (aboutPhoto) {
+                galleryImages.unshift(aboutPhoto); // Добавляем главное фото первым
+            }
+        }
+
+        // Открытие модального окна
+        function openModal(index) {
+            currentImageIndex = index;
+            modal.style.display = "block";
+            modalImg.src = galleryImages[currentImageIndex].src;
+            captionText.innerHTML = galleryImages[currentImageIndex].alt;
+            document.body.style.overflow = "hidden"; // Блокируем прокрутку
+        }
+
+        // Закрытие модального окна
+        function closeModalFunc() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Возвращаем прокрутку
+        }
+
+        // Следующее фото
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            modalImg.src = galleryImages[currentImageIndex].src;
+            captionText.innerHTML = galleryImages[currentImageIndex].alt;
+        }
+
+        // Предыдущее фото
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            modalImg.src = galleryImages[currentImageIndex].src;
+            captionText.innerHTML = galleryImages[currentImageIndex].alt;
+        }
+
+        // Обработчики событий
+        document.addEventListener('DOMContentLoaded', function() {
+            initGallery();
+            
+            // Клик по фото в галерее
+            galleryImages.forEach((img, index) => {
+                img.addEventListener('click', () => openModal(index));
+            });
+            
+            // Закрытие модального окна
+            closeModal.addEventListener('click', closeModalFunc);
+            
+            // Кнопки навигации
+            nextBtn.addEventListener('click', nextImage);
+            prevBtn.addEventListener('click', prevImage);
+            
+            // Закрытие по клику вне фото
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModalFunc();
+                }
+            });
+            
+            // Навигация клавишами
+            document.addEventListener('keydown', function(e) {
+                if (modal.style.display === "block") {
+                    if (e.key === "Escape") closeModalFunc();
+                    if (e.key === "ArrowRight") nextImage();
+                    if (e.key === "ArrowLeft") prevImage();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
